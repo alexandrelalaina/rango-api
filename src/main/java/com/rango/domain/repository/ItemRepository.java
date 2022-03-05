@@ -1,6 +1,6 @@
-package com.rango.repository;
+package com.rango.domain.repository;
 
-import com.rango.model.Item;
+import com.rango.domain.model.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ItemRepository extends JpaRepository<Item, Integer> {

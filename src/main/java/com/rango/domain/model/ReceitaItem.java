@@ -1,8 +1,7 @@
-package com.rango.model;
+package com.rango.domain.model;
 
 import lombok.Data;
 
-import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
