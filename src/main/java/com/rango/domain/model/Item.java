@@ -1,4 +1,4 @@
-package com.rango.model;
+package com.rango.domain.model;
 
 import lombok.Data;
 

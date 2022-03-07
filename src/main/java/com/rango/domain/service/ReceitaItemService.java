@@ -1,7 +1,7 @@
-package com.rango.service;
+package com.rango.domain.service;
 
-import com.rango.model.ReceitaItem;
-import com.rango.repository.ReceitaItemRepository;
+import com.rango.domain.model.ReceitaItem;
+import com.rango.domain.repository.ReceitaItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

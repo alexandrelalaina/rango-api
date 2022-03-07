@@ -1,11 +1,10 @@
-package com.rango.controller;
+package com.rango.api.controller;
 
-import com.rango.model.Receita;
-import com.rango.service.ReceitaService;
+import com.rango.domain.model.Receita;
+import com.rango.domain.service.ReceitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
