@@ -1,12 +1,16 @@
 package com.rango.api.controller;
 
+import com.rango.api.assembler.ReceitaRequestDisassembler;
+import com.rango.api.assembler.ReceitaResponseAssembler;
+import com.rango.api.dto.request.ReceitaRequestDTO;
+import com.rango.api.dto.response.ReceitaResponseDTO;
 import com.rango.domain.model.Receita;
 import com.rango.domain.service.ReceitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,35 +20,50 @@ public class ReceitaController {
     @Autowired
     ReceitaService service;
 
+    @Autowired
+    private ReceitaResponseAssembler assembler;
+
+    @Autowired
+    private ReceitaRequestDisassembler disassembler;
+
     @GetMapping
-    public ResponseEntity<List<Receita>> findAll(){
-        return ResponseEntity.ok(service.findAll());
+    public List<ReceitaResponseDTO> findAll(){
+        List<Receita> receitas = service.findAll();
+
+        return assembler.toCollectionModel(receitas);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Receita> getById(@PathVariable("id") Integer id){
+    public ReceitaResponseDTO getById(@PathVariable("id") Integer id){
         Receita receita = service.getById(id);
-        if (receita!=null){
-            return ResponseEntity.ok(receita);
-        }
-        return ResponseEntity.notFound().build();
+
+        return assembler.toModel(receita);
     }
 
     @PostMapping
-    public ResponseEntity<Receita> add(@RequestBody Receita receita){
-        receita.setId(null);
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.add(receita));
+    public ReceitaResponseDTO add(@RequestBody @Valid ReceitaRequestDTO receitaRequestDTO){
+        Receita receita = disassembler.toDomainObject(receitaRequestDTO);
+
+        receita = service.add(receita);
+
+        return assembler.toModel(receita);
     }
 
-    @PutMapping
-    public  ResponseEntity<Receita> update(@RequestBody Receita receita){
-        return ResponseEntity.ok(service.update(receita));
+    @PutMapping("/{id}")
+    public ReceitaResponseDTO update(@PathVariable("id") Integer id, @RequestBody @Valid ReceitaRequestDTO receitaRequestDTO){
+        Receita receita = service.getById(id);
+
+        disassembler.copyToDomainObject(receitaRequestDTO, receita);
+
+        receita = service.add(receita);
+
+        return assembler.toModel(receita);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Receita> delete(@PathVariable("id") Integer id){
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") Integer id) {
         service.delete(id);
-        return ResponseEntity.noContent().build();
     }
 
 }

@@ -4,8 +4,6 @@ import com.rango.api.assembler.ItemRequestDisassembler;
 import com.rango.api.assembler.ItemResponseAssembler;
 import com.rango.api.dto.request.ItemRequestDTO;
 import com.rango.api.dto.response.ItemResponseDTO;
-import com.rango.domain.exception.ItemNaoEncontradoException;
-import com.rango.domain.exception.NegocioException;
 import com.rango.domain.model.Item;
 import com.rango.domain.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;

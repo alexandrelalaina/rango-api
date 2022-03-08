@@ -15,7 +15,7 @@ public class Receita {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_receita")
     private Integer id;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "descr", nullable = false, length = 100)
     private String descr;
 
     @Column(name = "vl_medio", nullable = false)
