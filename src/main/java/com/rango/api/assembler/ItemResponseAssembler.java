@@ -15,13 +15,13 @@ public class ItemResponseAssembler {
     @Autowired
     private ModelMapper modelMapper;
 
-    public ItemResponseDTO toModel(Item item) {
+    public ItemResponseDTO toDTO(Item item) {
         return modelMapper.map(item, ItemResponseDTO.class);
     }
 
     public List<ItemResponseDTO> toCollectionModel(List<Item> itens) {
         return itens.stream()
-                .map(this::toModel)
+                .map(this::toDTO)
                 .collect(Collectors.toList());
     }
 

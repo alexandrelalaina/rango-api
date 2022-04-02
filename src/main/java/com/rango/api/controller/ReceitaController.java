@@ -37,7 +37,7 @@ public class ReceitaController {
     public ReceitaResponseDTO getById(@PathVariable("id") Integer id){
         Receita receita = service.getById(id);
 
-        return assembler.toModel(receita);
+        return assembler.toDTO(receita);
     }
 
     @PostMapping
@@ -46,7 +46,7 @@ public class ReceitaController {
 
         receita = service.add(receita);
 
-        return assembler.toModel(receita);
+        return assembler.toDTO(receita);
     }
 
     @PutMapping("/{id}")
@@ -57,7 +57,7 @@ public class ReceitaController {
 
         receita = service.add(receita);
 
-        return assembler.toModel(receita);
+        return assembler.toDTO(receita);
     }
 
     @DeleteMapping("/{id}")

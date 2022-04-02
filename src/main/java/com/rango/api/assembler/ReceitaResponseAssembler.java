@@ -15,13 +15,13 @@ public class ReceitaResponseAssembler {
     @Autowired
     private ModelMapper modelMapper;
 
-    public ReceitaResponseDTO toModel(Receita receita) {
+    public ReceitaResponseDTO toDTO(Receita receita) {
         return modelMapper.map(receita, ReceitaResponseDTO.class);
     }
 
     public List<ReceitaResponseDTO> toCollectionModel(List<Receita> receitas) {
         return receitas.stream()
-                .map(this::toModel)
+                .map(this::toDTO)
                 .collect(Collectors.toList());
     }
 
