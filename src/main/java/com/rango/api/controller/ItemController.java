@@ -37,7 +37,7 @@ public class ItemController {
     public ItemResponseDTO getById(@PathVariable("id") Integer id) {
         Item item = service.getById(id);
 
-        return assembler.toModel(item);
+        return assembler.toDTO(item);
     }
 
     @PostMapping
@@ -47,7 +47,7 @@ public class ItemController {
 
         item = service.add(item);
 
-        return assembler.toModel(item);
+        return assembler.toDTO(item);
     }
 
     @PutMapping("/{id}")
@@ -58,7 +58,7 @@ public class ItemController {
 
         item = service.add(item);
 
-        return assembler.toModel(item);
+        return assembler.toDTO(item);
     }
 
     @DeleteMapping("/{id}")

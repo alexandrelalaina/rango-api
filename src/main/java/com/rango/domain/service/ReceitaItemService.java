@@ -17,4 +17,8 @@ public class ReceitaItemService {
         return repository.findAll();
     }
 
+    public ReceitaItem add(ReceitaItem receitaItem){
+        return repository.save(receitaItem);
+    }
+
 }

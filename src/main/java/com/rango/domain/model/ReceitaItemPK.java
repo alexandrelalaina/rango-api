@@ -1,5 +1,6 @@
 package com.rango.domain.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Embeddable;
@@ -12,6 +13,7 @@ import java.io.Serializable;
  */
 
 @Data
+@Builder
 @Embeddable
 public class ReceitaItemPK implements Serializable {
 
