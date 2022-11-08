@@ -26,17 +26,11 @@ public class Item {
     @Column(name = "descricao", nullable = false, length = 100)
     private String descricao;
 
-    @Column(name = "imagem", nullable = true)
-    private String imagem;
-
     @Column(name = "possui_estoque", nullable = false)
     private Integer possuiEstoque;
 
-    @Column(name = "quantidade", nullable = false)
-    private Float quantidade;
-
-    @Column(name = "valor", nullable = false)
-    private BigDecimal valor;
+    @Column(name = "imagem", nullable = true)
+    private String imagem;
 
     @Column(name = "obs", nullable = true)
     private String obs;

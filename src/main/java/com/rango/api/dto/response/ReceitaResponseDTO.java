@@ -15,5 +15,7 @@ public class ReceitaResponseDTO {
 
     private Integer id;
     private String descricao;
-    private BigDecimal vlMedio;
+    private BigDecimal valor;
+    private String imagem;
+    private String obs;
 }
