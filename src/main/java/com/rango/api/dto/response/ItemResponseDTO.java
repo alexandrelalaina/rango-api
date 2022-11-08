@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -12,6 +14,10 @@ import lombok.NoArgsConstructor;
 public class ItemResponseDTO {
 
     private Integer id;
-    private String descr;
+    private String descricao;
+    private String imagem;
     private Integer possuiEstoque;
+    private Float quantidade;
+    private BigDecimal valor;
+    private String obs;
 }

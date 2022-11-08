@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/item") // por Default essa sera a URI atendida
+@RequestMapping("/api/itens") // por Default essa sera a URI atendida
 public class ItemController {
 
     @Autowired
