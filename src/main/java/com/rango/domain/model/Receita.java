@@ -24,7 +24,12 @@ public class Receita {
     @Column(name = "descricao", nullable = false, length = 100)
     private String descricao;
 
-    @Column(name = "vl_medio", nullable = false)
-    private BigDecimal vlMedio;
+    @Column(name = "valor", nullable = false)
+    private BigDecimal valor;
 
+    @Column(name = "imagem", nullable = true)
+    private String imagem;
+
+    @Column(name = "obs", nullable = true)
+    private String obs;
 }

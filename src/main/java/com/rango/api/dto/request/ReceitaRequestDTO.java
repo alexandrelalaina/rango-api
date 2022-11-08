@@ -15,6 +15,10 @@ public class ReceitaRequestDTO {
     private String descricao;
 
     @NotNull
-    private BigDecimal vlMedio;
+    private BigDecimal valor;
+
+    private String imagem;
+
+    private String obs;
 
 }

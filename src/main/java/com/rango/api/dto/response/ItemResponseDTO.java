@@ -15,9 +15,7 @@ public class ItemResponseDTO {
 
     private Integer id;
     private String descricao;
-    private String imagem;
     private Integer possuiEstoque;
-    private Float quantidade;
-    private BigDecimal valor;
+    private String imagem;
     private String obs;
 }

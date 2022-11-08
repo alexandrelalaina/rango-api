@@ -14,17 +14,10 @@ public class ItemRequestDTO {
     @JsonProperty("descricao")
     private String descricao;
 
-    private String imagem;
-
     @NotNull
     private Integer possuiEstoque;
 
-    @NotNull
-    private Float quantidade;
-
-    @NotNull
-    private BigDecimal valor;
+    private String imagem;
 
     private String obs;
-
 }
