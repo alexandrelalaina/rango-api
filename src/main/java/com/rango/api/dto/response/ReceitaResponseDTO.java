@@ -14,6 +14,6 @@ import java.math.BigDecimal;
 public class ReceitaResponseDTO {
 
     private Integer id;
-    private String descr;
+    private String descricao;
     private BigDecimal vlMedio;
 }

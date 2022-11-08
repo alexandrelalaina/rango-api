@@ -12,7 +12,7 @@ public class ReceitaRequestDTO {
 
     @NotBlank
     @JsonProperty("descricao")
-    private String descr;
+    private String descricao;
 
     @NotNull
     private BigDecimal vlMedio;

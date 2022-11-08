@@ -25,7 +25,7 @@ public class ReceitaItemResponseAssembler {
         return ReceitaItemResponseDTO.builder()
                 .receita(ReceitaResponseDTO.builder()
                         .id(receitaItem.getId().getReceitaId().getId())
-                        .descr(receitaItem.getId().getReceitaId().getDescr())
+                        .descricao(receitaItem.getId().getReceitaId().getDescricao())
                         .vlMedio(receitaItem.getId().getReceitaId().getVlMedio())
                         .build())
                 .item(ItemResponseDTO.builder()

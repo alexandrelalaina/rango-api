@@ -21,8 +21,8 @@ public class Receita {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_receita")
     private Integer id;
 
-    @Column(name = "descr", nullable = false, length = 100)
-    private String descr;
+    @Column(name = "descricao", nullable = false, length = 100)
+    private String descricao;
 
     @Column(name = "vl_medio", nullable = false)
     private BigDecimal vlMedio;
