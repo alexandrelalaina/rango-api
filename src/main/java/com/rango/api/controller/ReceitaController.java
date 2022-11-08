@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/receita")
+@RequestMapping("/api/receitas")
 public class ReceitaController {
 
     @Autowired

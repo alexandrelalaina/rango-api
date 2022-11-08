@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/receita-item")
+@RequestMapping("/api/receitas-itens")
 public class ReceitaItemController {
 
     @Autowired

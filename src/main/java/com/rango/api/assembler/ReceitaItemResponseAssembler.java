@@ -30,8 +30,12 @@ public class ReceitaItemResponseAssembler {
                         .build())
                 .item(ItemResponseDTO.builder()
                         .id(receitaItem.getId().getItemId().getId())
-                        .descr(receitaItem.getId().getItemId().getDescr())
+                        .descricao(receitaItem.getId().getItemId().getDescricao())
+                        .imagem(receitaItem.getId().getItemId().getImagem())
                         .possuiEstoque(receitaItem.getId().getItemId().getPossuiEstoque())
+                        .quantidade(receitaItem.getId().getItemId().getQuantidade())
+                        .valor(receitaItem.getId().getItemId().getValor())
+                        .obs(receitaItem.getId().getItemId().getObs())
                         .build())
                 .build();
 //                return modelMapper.map(receitaItem, ReceitaItemResponseDTO.class);
