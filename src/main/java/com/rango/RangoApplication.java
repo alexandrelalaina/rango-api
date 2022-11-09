@@ -40,19 +40,20 @@ public class RangoApplication {
 
 		Item itemFrangoDesfiado = Item.builder()
 				.descricao("Frango desfiado")
-				.possuiEstoque(3)
+				.possuiEstoque(4)
+				.obs("sem sal")
 				.build();
 		itemRepository.save(itemFrangoDesfiado);
 
 		Item itemCenoura = Item.builder()
 				.descricao("Cenoura")
-				.possuiEstoque(3)
+				.possuiEstoque(2)
 				.build();
 		itemRepository.save(itemCenoura);
 
 		Item itemAbobrinha = Item.builder()
 				.descricao("Abobrinha")
-				.possuiEstoque(3)
+				.possuiEstoque(1)
 				.build();
 		itemRepository.save(itemAbobrinha);
 
@@ -60,7 +61,7 @@ public class RangoApplication {
 		receitaRepository.deleteAll();
 
 		Receita receitaSalpicao = Receita.builder()
-				.descricao("Salpícão")
+				.descricao("Salpicão")
 				.valor(BigDecimal.valueOf(15))
 				.build();
 		receitaRepository.save(receitaSalpicao);
