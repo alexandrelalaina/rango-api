@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 @Data
 public class ItemRequestDTO {
 
+    private Integer id;
+
     @NotBlank
     @JsonProperty("descricao")
     private String descricao;
