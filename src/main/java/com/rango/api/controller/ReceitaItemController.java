@@ -31,8 +31,6 @@ public class ReceitaItemController {
     @Autowired
     ItemService itemService;
 
-
-
     @Autowired
     private ReceitaItemResponseAssembler assembler;
 

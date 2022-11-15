@@ -40,6 +40,15 @@ public class ItemController {
         return assembler.toDTO(item);
     }
 
+    @GetMapping("/filter")
+    public List<ItemResponseDTO> filter(
+            @RequestParam(value = "id", required = false) Integer id,
+            @RequestParam(value = "descricao", required = false) String descricao,
+            @RequestParam(value = "possuiEstoqueDe", required = false) Integer possuiEstoqueDe,
+            @RequestParam(value = "possuiEstoqueAte", required = false) Integer possuiEstoqueAte){
+        return assembler.toCollectionModel(service.filter(id, descricao, possuiEstoqueDe, possuiEstoqueAte));
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ItemResponseDTO add(@RequestBody @Valid ItemRequestDTO itemRequestDTO) {
