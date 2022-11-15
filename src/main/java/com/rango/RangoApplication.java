@@ -57,6 +57,18 @@ public class RangoApplication {
 				.build();
 		itemRepository.save(itemAbobrinha);
 
+		Item itemCalabresa = Item.builder()
+				.descricao("Calabresa")
+				.possuiEstoque(2)
+				.build();
+		itemRepository.save(itemCalabresa);
+
+		Item itemCebola = Item.builder()
+				.descricao("Cebola")
+				.possuiEstoque(3)
+				.build();
+		itemRepository.save(itemCebola);
+
 		// 2 Receita
 		receitaRepository.deleteAll();
 
@@ -65,6 +77,12 @@ public class RangoApplication {
 				.valor(BigDecimal.valueOf(15))
 				.build();
 		receitaRepository.save(receitaSalpicao);
+
+		Receita receitaCalabresaAcebolada = Receita.builder()
+				.descricao("Calabresa Acebolada")
+				.valor(BigDecimal.valueOf(12))
+				.build();
+		receitaRepository.save(receitaCalabresaAcebolada);
 
 		// 3 ReceitaItem
 		receitaItemRepository.deleteAll();

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -38,6 +39,16 @@ public class ReceitaController {
         Receita receita = service.getById(id);
 
         return assembler.toDTO(receita);
+    }
+
+    @GetMapping("/filter")
+    public List<ReceitaResponseDTO> filter(
+            @RequestParam(value = "id", required = false ) Integer id ,
+            @RequestParam(value = "descricao", required = false) String descricao,
+            @RequestParam(value = "valorDe", required = false) BigDecimal valorDe,
+            @RequestParam(value = "valorAte", required = false) BigDecimal valorAte)
+    {
+        return assembler.toCollectionModel(service.filter(id, descricao, valorDe, valorAte));
     }
 
     @PostMapping
