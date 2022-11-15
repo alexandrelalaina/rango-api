@@ -1,9 +1,10 @@
 package com.rango.api.controller;
 
 
-import com.rango.api.assembler.ReceitaItemRequestDisassembler;
+import com.rango.api.assembler.ItemResponseAssembler;
 import com.rango.api.assembler.ReceitaItemResponseAssembler;
 import com.rango.api.dto.request.ReceitaItemRequestDTO;
+import com.rango.api.dto.response.ReceitaItemListResponseDTO;
 import com.rango.api.dto.response.ReceitaItemResponseDTO;
 import com.rango.domain.model.Item;
 import com.rango.domain.model.Receita;
@@ -34,13 +35,25 @@ public class ReceitaItemController {
     @Autowired
     private ReceitaItemResponseAssembler assembler;
 
-    private ReceitaItemRequestDisassembler disassembler;
+    @Autowired
+    private ItemResponseAssembler itemAssembler;
 
     @GetMapping
     public List<ReceitaItemResponseDTO> findAll(){
         List<ReceitaItem> receitaItems = receitaItemService.findAll();
 
         return assembler.toCollectionModel(receitaItems);
+    }
+
+    @GetMapping("/{receitaId}/itens")
+    public ReceitaItemListResponseDTO getItemList(){
+        List<Item> itemList = itemService.filter(null, "a", null, null);
+
+        ReceitaItemListResponseDTO receitaItemList = ReceitaItemListResponseDTO.builder()
+                .receitaItens(itemAssembler.toCollectionModel(itemList))
+                .build();
+
+        return receitaItemList;
     }
 
     @PostMapping
