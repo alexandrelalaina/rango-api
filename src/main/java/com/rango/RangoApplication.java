@@ -24,6 +24,7 @@ public class RangoApplication {
 		SpringApplication.run(RangoApplication.class, args);
 	}
 
+	/*
 	@Bean
 	CommandLineRunner cargaInicial(
 			ItemRepository itemRepository,
@@ -111,5 +112,6 @@ public class RangoApplication {
 		return null;
 
 	}
+	*/
 
 }
