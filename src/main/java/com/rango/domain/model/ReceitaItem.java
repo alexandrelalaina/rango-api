@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Data
 @Builder
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name = "receita_item")
-public class ReceitaItem {
+public class ReceitaItem implements Serializable {
 
     @EmbeddedId
     private ReceitaItemPK id;
