@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Data
@@ -14,9 +15,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Entity
 @Table(name = "item")
-public class Item {
-
-//    private static final long serialVersionUID = 1L;
+public class Item implements Serializable {
 
     @Id
     @SequenceGenerator(name = "seq_item", sequenceName = "seq_item")
