@@ -36,7 +36,7 @@ public class ReceitaController {
 
     @GetMapping("/{id}")
     public ReceitaResponseDTO getById(@PathVariable("id") Integer id){
-        Receita receita = service.getById(id);
+        Receita receita = service.findById(id);
 
         return assembler.toDTO(receita);
     }
@@ -62,7 +62,7 @@ public class ReceitaController {
 
     @PutMapping("/{id}")
     public ReceitaResponseDTO update(@PathVariable("id") Integer id, @RequestBody @Valid ReceitaRequestDTO receitaRequestDTO){
-        Receita receita = service.getById(id);
+        Receita receita = service.findById(id);
 
         disassembler.copyToDomainObject(receitaRequestDTO, receita);
 

@@ -46,7 +46,7 @@ public class ReceitaItemController {
 
     @GetMapping("/{receitaId}/itens")
     public List<ItemResponseDTO> getItemList(@PathVariable("receitaId") Integer receitaId){
-        List<Item> itemList = receitaItemService.getByReceitaId(receitaId);
+        List<Item> itemList = receitaItemService.getItemListByReceitaId(receitaId);
 
         List<ItemResponseDTO> itemResponseDTOList = itemAssembler.toCollectionModel(itemList);
         return itemResponseDTOList;
@@ -54,9 +54,9 @@ public class ReceitaItemController {
 
     @PostMapping
     public ReceitaItemResponseDTO add(@RequestBody @Valid ReceitaItemRequestDTO request){
-        Receita receita = receitaService.getById(request.getReceitaId());
+        Receita receita = receitaService.findById(request.getReceitaId());
 
-        Item item = itemService.getById(request.getItemId());
+        Item item = itemService.findById(request.getItemId());
 
         ReceitaItemPK receitaItemPK = ReceitaItemPK.builder()
                 .receitaId(receita)

@@ -4,7 +4,6 @@ import com.rango.domain.exception.ReceitaNaoEncontradaException;
 import com.rango.domain.model.Receita;
 import com.rango.domain.repository.ReceitaCustomRepository;
 import com.rango.domain.repository.ReceitaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +13,20 @@ import java.util.List;
 @Service
 public class ReceitaService {
 
-    @Autowired
-    ReceitaRepository repository;
+    private final ReceitaRepository repository;
 
-    @Autowired
-    ReceitaCustomRepository repositoryCustom;
+    private final ReceitaCustomRepository repositoryCustom;
+
+    public ReceitaService(ReceitaRepository repository, ReceitaCustomRepository repositoryCustom) {
+        this.repository = repository;
+        this.repositoryCustom = repositoryCustom;
+    }
 
     public List<Receita> findAll(){
         return repository.findAll();
     }
 
-    public Receita getById(Integer id) {
+    public Receita findById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new ReceitaNaoEncontradaException(id));    }
 
     public Receita add(Receita receita){

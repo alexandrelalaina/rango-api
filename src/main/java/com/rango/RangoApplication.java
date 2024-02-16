@@ -24,7 +24,6 @@ public class RangoApplication {
 		SpringApplication.run(RangoApplication.class, args);
 	}
 
-	/*
 	@Bean
 	CommandLineRunner cargaInicial(
 			ItemRepository itemRepository,
@@ -88,6 +87,7 @@ public class RangoApplication {
 		// 3 ReceitaItem
 		receitaItemRepository.deleteAll();
 
+		// Salpicao
 		receitaItemRepository.save(ReceitaItem.builder()
 				.id(ReceitaItemPK.builder()
 						.receitaId(receitaSalpicao)
@@ -109,9 +109,22 @@ public class RangoApplication {
 						.build())
 				.build());
 
+		// Calabresa Acebolada
+		receitaItemRepository.save(ReceitaItem.builder()
+				.id(ReceitaItemPK.builder()
+						.receitaId(receitaCalabresaAcebolada)
+						.itemId(itemCalabresa)
+						.build())
+				.build());
+		receitaItemRepository.save(ReceitaItem.builder()
+				.id(ReceitaItemPK.builder()
+						.receitaId(receitaCalabresaAcebolada)
+						.itemId(itemCebola)
+						.build())
+				.build());
+
 		return null;
 
 	}
-	*/
 
 }

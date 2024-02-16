@@ -4,7 +4,6 @@ import com.rango.domain.exception.ItemNaoEncontradoException;
 import com.rango.domain.model.Item;
 import com.rango.domain.repository.ItemCustomRepository;
 import com.rango.domain.repository.ItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -13,17 +12,19 @@ import java.util.List;
 @Service
 public class ItemService {
 
-    @Autowired
-    ItemRepository repository;
+    private final ItemRepository repository;
+    private final ItemCustomRepository repositoryCustom;
 
-    @Autowired
-    ItemCustomRepository repositoryCustom;
+    public ItemService(ItemRepository repository, ItemCustomRepository repositoryCustom) {
+        this.repository = repository;
+        this.repositoryCustom = repositoryCustom;
+    }
 
     public List<Item> findAll() {
         return repository.findAll();
     }
 
-    public Item getById(Integer id) {
+    public Item findById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new ItemNaoEncontradoException(id));
     }
 

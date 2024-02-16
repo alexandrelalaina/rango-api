@@ -35,7 +35,7 @@ public class ItemController {
 
     @GetMapping("/{id}")
     public ItemResponseDTO getById(@PathVariable("id") Integer id) {
-        Item item = service.getById(id);
+        Item item = service.findById(id);
 
         return assembler.toDTO(item);
     }
@@ -61,7 +61,7 @@ public class ItemController {
 
     @PutMapping("/{id}")
     public ItemResponseDTO update(@PathVariable("id") Integer id, @RequestBody @Valid ItemRequestDTO itemRequestDTO) {
-        Item item = service.getById(id);
+        Item item = service.findById(id);
 
         disassembler.copyToDomainObject(itemRequestDTO, item);
 
