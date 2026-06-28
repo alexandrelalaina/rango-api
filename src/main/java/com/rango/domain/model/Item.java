@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Data
 @Builder
@@ -18,8 +17,8 @@ import java.math.BigDecimal;
 public class Item implements Serializable {
 
     @Id
-    @SequenceGenerator(name = "seq_item", sequenceName = "seq_item")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_item")
+    // Use IDENTITY for H2 to avoid creating sequences (better compatibility across H2 versions)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "descricao", nullable = false, length = 100)

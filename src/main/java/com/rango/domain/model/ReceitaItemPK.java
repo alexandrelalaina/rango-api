@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
@@ -22,11 +23,11 @@ import java.io.Serializable;
 public class ReceitaItemPK implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "fk_receita_id", nullable = false)
+    @JoinColumn(name = "fk_receita_id", nullable = false, foreignKey = @ForeignKey(name = "FK_RECEITA_ITEM_RECEITA"))
     private Receita receitaId;
 
     @ManyToOne
-    @JoinColumn(name = "fk_item_id", nullable = false)
+    @JoinColumn(name = "fk_item_id", nullable = false, foreignKey = @ForeignKey(name = "FK_RECEITA_ITEM_ITEM"))
     private Item itemId;
 
 }
