@@ -61,6 +61,15 @@ public class ItemController {
 
     @PutMapping("/{id}")
     public ItemResponseDTO update(@PathVariable("id") Integer id, @RequestBody @Valid ItemRequestDTO itemRequestDTO) {
+        return updateItem(id, itemRequestDTO);
+    }
+
+    @PatchMapping("/{id}")
+    public ItemResponseDTO patch(@PathVariable("id") Integer id, @RequestBody ItemRequestDTO itemRequestDTO) {
+        return updateItem(id, itemRequestDTO);
+    }
+
+    private ItemResponseDTO updateItem(Integer id, ItemRequestDTO itemRequestDTO) {
         Item item = service.getById(id);
 
         disassembler.copyToDomainObject(itemRequestDTO, item);
