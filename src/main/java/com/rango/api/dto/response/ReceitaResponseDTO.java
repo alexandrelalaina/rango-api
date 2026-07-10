@@ -18,4 +18,5 @@ public class ReceitaResponseDTO {
     private BigDecimal valor;
     private String imagem;
     private String obs;
+    private Integer possuiEstoque;
 }
