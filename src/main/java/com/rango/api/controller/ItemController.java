@@ -45,8 +45,9 @@ public class ItemController {
             @RequestParam(value = "id", required = false) Integer id,
             @RequestParam(value = "descricao", required = false) String descricao,
             @RequestParam(value = "possuiEstoqueDe", required = false) Integer possuiEstoqueDe,
-            @RequestParam(value = "possuiEstoqueAte", required = false) Integer possuiEstoqueAte){
-        return assembler.toCollectionModel(service.filter(id, descricao, possuiEstoqueDe, possuiEstoqueAte));
+            @RequestParam(value = "possuiEstoqueAte", required = false) Integer possuiEstoqueAte,
+            @RequestParam(value = "consumoDireto", required = false) Boolean consumoDireto){
+        return assembler.toCollectionModel(service.filter(id, descricao, possuiEstoqueDe, possuiEstoqueAte, consumoDireto));
     }
 
     @PostMapping

@@ -31,8 +31,9 @@ public class ItemService {
             Integer id,
             String descricao,
             Integer possuiEstoqueDe,
-            Integer possuiEstoqueAte){
-        return repositoryCustom.filterCustomizado(id, descricao, possuiEstoqueDe, possuiEstoqueAte);
+            Integer possuiEstoqueAte,
+            Boolean consumoDireto){
+        return repositoryCustom.filterCustomizado(id, descricao, possuiEstoqueDe, possuiEstoqueAte, consumoDireto);
     }
 
     public Item add(Item item) {

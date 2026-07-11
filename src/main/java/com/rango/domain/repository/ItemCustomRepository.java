@@ -23,7 +23,8 @@ public class ItemCustomRepository {
             Integer id,
             String descricao,
             Integer possuiEstoqueDe,
-            Integer possuiEstoqueAte){
+            Integer possuiEstoqueAte,
+            Boolean consumoDireto){
 
         List<MapCampoFilter> campoList = new ArrayList<>();
 
@@ -38,6 +39,10 @@ public class ItemCustomRepository {
         }
         if (possuiEstoqueAte != null){
             MapCampoUtil.addToMap(campoList, new MapCampoFilter("possuiEstoque", possuiEstoqueAte.toString(), "Integer","possuiEstoqueAte", "<="));
+        }
+
+        if (consumoDireto != null){
+            MapCampoUtil.addToMap(campoList, new MapCampoFilter("consumoDireto", consumoDireto.toString(), "Boolean", "consumoDireto", "="));
         }
 
         Query query = MapCampoUtil.queryCustomizada(

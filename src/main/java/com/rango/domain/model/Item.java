@@ -33,4 +33,10 @@ public class Item implements Serializable {
     @Column(name = "obs", nullable = true)
     private String obs;
 
+    // (true)  item pode ser consumido direto
+    // (false) item NAO pode ser consumido direto e precisa ser preparado eu uma receita
+    @Column(name = "consumo_direto", nullable = false)
+    private boolean consumoDireto;
+
+
 }
