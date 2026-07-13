@@ -22,6 +22,6 @@ public class ItemRequestDTO {
 
     private String obs;
 
-    private boolean consumoDireto;
+    private Boolean consumoDireto;
 
 }

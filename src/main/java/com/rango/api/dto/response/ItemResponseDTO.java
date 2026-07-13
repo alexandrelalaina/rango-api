@@ -16,5 +16,5 @@ public class ItemResponseDTO {
     private Integer possuiEstoque;
     private String imagem;
     private String obs;
-    private boolean consumoDireto;
+    private Boolean consumoDireto;
 }
