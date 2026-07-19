@@ -24,4 +24,6 @@ public class ItemRequestDTO {
 
     private Boolean consumoDireto;
 
+    private Boolean favorito;
+
 }

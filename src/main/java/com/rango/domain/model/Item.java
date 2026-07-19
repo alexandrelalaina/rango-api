@@ -38,5 +38,7 @@ public class Item implements Serializable {
     @Column(name = "consumo_direto", nullable = false)
     private Boolean consumoDireto;
 
+    @Column(name = "favorito", nullable = false)
+    private Boolean favorito;
 
 }

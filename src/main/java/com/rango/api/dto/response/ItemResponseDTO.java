@@ -17,4 +17,5 @@ public class ItemResponseDTO {
     private String imagem;
     private String obs;
     private Boolean consumoDireto;
+    private Boolean favorito;
 }
