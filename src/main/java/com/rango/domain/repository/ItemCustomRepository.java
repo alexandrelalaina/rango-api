@@ -49,7 +49,8 @@ public class ItemCustomRepository {
                 this.em,
                 "Item",
                 "i",
-                campoList
+                campoList,
+                "i.favorito desc, i.possuiEstoque desc"
         );
         return query.getResultList();
     }
