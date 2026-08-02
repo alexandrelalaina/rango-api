@@ -58,6 +58,10 @@ public class MapCampoFilter {
             if (this.valor != null){
                 return Integer.parseInt(this.valor);
             }
+        } else if (this.tipo.equals("Boolean")){
+            if (this.valor != null){
+                return Boolean.parseBoolean(this.valor);
+            }
         }
         return valor;
     }

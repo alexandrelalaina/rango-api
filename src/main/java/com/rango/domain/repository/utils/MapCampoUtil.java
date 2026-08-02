@@ -18,6 +18,14 @@ public class MapCampoUtil {
                                          String entityName,
                                          String entityAlias,
                                          List<MapCampoFilter> campoList){
+        return queryCustomizada(em, entityName, entityAlias, campoList, null);
+    }
+
+    public static Query queryCustomizada(EntityManager em,
+                                         String entityName,
+                                         String entityAlias,
+                                         List<MapCampoFilter> campoList,
+                                         String orderBy){
         StringBuilder sb = new StringBuilder("select " + entityAlias + " from " + entityName + " as " + entityAlias);
         String condicao = " where ";
 
@@ -29,6 +37,10 @@ public class MapCampoUtil {
                     sb.append(condicao + entityAlias + "." + registro.getColumnName() + " " + registro.getCondicao() + " :" + registro.getQueryParam());
                 }
                 condicao = " and ";
+            }
+
+            if (orderBy != null && !orderBy.isBlank()) {
+                sb.append(" order by ").append(orderBy);
             }
 
             System.out.println(sb.toString());
@@ -44,6 +56,10 @@ public class MapCampoUtil {
 
             return query;
 
+        }
+
+        if (orderBy != null && !orderBy.isBlank()) {
+            sb.append(" order by ").append(orderBy);
         }
 
         Query query = em.createQuery(sb.toString());

@@ -18,8 +18,8 @@ import java.math.BigDecimal;
 public class Receita implements Serializable {
 
     @Id
-    @SequenceGenerator(name = "seq_receita", sequenceName = "seq_receita")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_receita")
+    // Use IDENTITY for H2 to avoid creating sequences (better compatibility across H2 versions)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "descricao", nullable = false, length = 100)

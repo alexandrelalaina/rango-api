@@ -45,8 +45,9 @@ public class ItemController {
             @RequestParam(value = "id", required = false) Integer id,
             @RequestParam(value = "descricao", required = false) String descricao,
             @RequestParam(value = "possuiEstoqueDe", required = false) Integer possuiEstoqueDe,
-            @RequestParam(value = "possuiEstoqueAte", required = false) Integer possuiEstoqueAte){
-        return assembler.toCollectionModel(service.filter(id, descricao, possuiEstoqueDe, possuiEstoqueAte));
+            @RequestParam(value = "possuiEstoqueAte", required = false) Integer possuiEstoqueAte,
+            @RequestParam(value = "consumoDireto", required = false) Boolean consumoDireto){
+        return assembler.toCollectionModel(service.filter(id, descricao, possuiEstoqueDe, possuiEstoqueAte, consumoDireto));
     }
 
     @PostMapping
@@ -61,6 +62,15 @@ public class ItemController {
 
     @PutMapping("/{id}")
     public ItemResponseDTO update(@PathVariable("id") Integer id, @RequestBody @Valid ItemRequestDTO itemRequestDTO) {
+        return updateItem(id, itemRequestDTO);
+    }
+
+    @PatchMapping("/{id}")
+    public ItemResponseDTO patch(@PathVariable("id") Integer id, @RequestBody ItemRequestDTO itemRequestDTO) {
+        return updateItem(id, itemRequestDTO);
+    }
+
+    private ItemResponseDTO updateItem(Integer id, ItemRequestDTO itemRequestDTO) {
         Item item = service.findById(id);
 
         disassembler.copyToDomainObject(itemRequestDTO, item);

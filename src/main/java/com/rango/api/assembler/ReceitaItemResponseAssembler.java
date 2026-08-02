@@ -4,22 +4,14 @@ import com.rango.api.dto.response.ItemResponseDTO;
 import com.rango.api.dto.response.ReceitaItemResponseDTO;
 import com.rango.api.dto.response.ReceitaResponseDTO;
 import com.rango.domain.model.ReceitaItem;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
 public class ReceitaItemResponseAssembler {
-
-    @Autowired
-    private ModelMapper modelMapper;
-
-//    public ReceitaItemResponseDTO toDTO(ReceitaItem receitaItem){
-//        return modelMapper.map(receitaItem, ReceitaItemResponseDTO.class);
-//    }
 
     public ReceitaItemResponseDTO toDTO(ReceitaItem receitaItem){
         return ReceitaItemResponseDTO.builder()
@@ -37,15 +29,25 @@ public class ReceitaItemResponseAssembler {
                         .obs(receitaItem.getId().getItemId().getObs())
                         .build())
                 .build();
-//                return modelMapper.map(receitaItem, ReceitaItemResponseDTO.class);
     }
 
     public List<ReceitaItemResponseDTO> toCollectionModel(List<ReceitaItem> receitaItens){
+        Map<Integer, List<ReceitaItem>> receitasAgrupadas = receitaItens.stream()
+                .collect(Collectors.groupingBy(ri -> ri.getId().getReceitaId().getId()));
+
         return receitaItens.stream()
-                .map(this::toDTO)
+                .map(receitaItem -> {
+                    ReceitaItemResponseDTO dto = toDTO(receitaItem);
+                    
+                    boolean possuiEstoque = receitasAgrupadas
+                            .get(receitaItem.getId().getReceitaId().getId())
+                            .stream()
+                            .allMatch(ri -> ri.getId().getItemId().getPossuiEstoque() > 0);
+                    
+                    dto.getReceita().setPossuiEstoque( possuiEstoque == true ? 1 : 0 );
+                    return dto;
+                })
                 .collect(Collectors.toList());
     }
-
-
 
 }
