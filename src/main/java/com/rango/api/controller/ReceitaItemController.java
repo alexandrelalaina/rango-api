@@ -13,6 +13,11 @@ import com.rango.domain.model.ReceitaItemPK;
 import com.rango.domain.service.ItemService;
 import com.rango.domain.service.ReceitaItemService;
 import com.rango.domain.service.ReceitaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +26,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/receitas-itens")
+@Tag(name = "Receitas Itens", description = "Operações para associação entre receitas e itens.")
 public class ReceitaItemController {
 
     @Autowired
@@ -39,13 +45,19 @@ public class ReceitaItemController {
     private ItemResponseAssembler itemAssembler;
 
     @GetMapping
+    @Operation(summary = "Lista todas as associações entre receitas e itens")
     public List<ReceitaItemResponseDTO> findAll(){
         List<ReceitaItem> receitaItems = receitaItemService.findAll();
         return assembler.toCollectionModel(receitaItems);
     }
 
     @GetMapping("/{receitaId}/itens")
-    public List<ItemResponseDTO> getItemList(@PathVariable("receitaId") Integer receitaId){
+    @Operation(summary = "Lista os itens de uma receita")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Lista de itens retornada"),
+            @ApiResponse(responseCode = "404", description = "Receita não encontrada")
+    })
+    public List<ItemResponseDTO> getItemList(@Parameter(description = "ID da receita") @PathVariable("receitaId") Integer receitaId){
         List<Item> itemList = receitaItemService.getItemListByReceitaId(receitaId);
 
         List<ItemResponseDTO> itemResponseDTOList = itemAssembler.toCollectionModel(itemList);
@@ -53,6 +65,7 @@ public class ReceitaItemController {
     }
 
     @PostMapping
+    @Operation(summary = "Vincula um item a uma receita")
     public ReceitaItemResponseDTO add(@RequestBody @Valid ReceitaItemRequestDTO request){
         Receita receita = receitaService.findById(request.getReceitaId());
 
